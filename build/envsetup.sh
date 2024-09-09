@@ -1105,3 +1105,4 @@ export WITH_GMS=true
 export PRODUCT_USE_SCUDO=true
 
 export BUILD_BROKEN_DUP_RULES=true
+export RELAX_USES_LIBRARY_CHECK=true
