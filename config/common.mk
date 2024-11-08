@@ -1,6 +1,32 @@
 # Allow vendor/extra to override any property by setting it first
 $(call inherit-product-if-exists, vendor/extra/product.mk)
 
+PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST +=  \
+    system/app/AboutBliss/AboutBliss.apk \
+    system/app/Gramophone/Gramophone.apk \
+    system/app/WeatherIcons/WeatherIcons.apk \
+    system/etc/default-permissions/default_permissions_co.aospa.sense.xml \
+    system/etc/init/smartcharge-init.rc \
+    system/etc/permissions/android.hardware.biometrics.face.xml \
+    system/etc/permissions/org.lineageos.audio.xml \
+    system/etc/permissions/org.lineageos.hardware.xml \
+    system/etc/permissions/org.lineageos.livedisplay.xml \
+    system/etc/permissions/org.lineageos.performance.xml \
+    system/etc/permissions/org.lineageos.profiles.xml \
+    system/etc/permissions/org.lineageos.settings.xml \
+    system/etc/permissions/org.lineageos.trust.xml \
+    system/etc/permissions/privapp-permissions-google.xml \
+    system/etc/permissions/privapp_whitelist_co.aospa.sense.xml \
+    system/etc/sysconfig/hiddenapi-whitelist-co.aospa.sense.xml \
+    system/fonts/RobotoFallback-VF.ttf \
+    system/lib64/libFaceDetectCA.so \
+    system/lib64/libMegviiUnlock-jni-1.2.so \
+    system/lib64/libMegviiUnlock.so \
+    system/lib64/libmegface.so \
+    system/media/bootanimation.zip \
+    system/priv-app/ParanoidSense/ParanoidSense.apk
+
+
 PRODUCT_BRAND ?= Bliss
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
@@ -228,8 +254,60 @@ PRODUCT_COPY_FILES += \
     vendor/bliss/prebuilt/common/etc/sysconfig/quick_tap.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/quick_tap.xml
 endif
 
-# Certification
-$(call inherit-product-if-exists, vendor/certification/config.mk)
+# Use 2-button navbar by default
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.twobutton
+
+# Enable blur
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.sf.blurs_are_expensive=1 \
+    ro.surface_flinger.supports_background_blur=1 \
+
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+dalvik.vm.checkjini=false \
+ro.kernel.android.checkjni=0 \
+ro.kernel.checkjni=0 \
+ro.config.nocheckin=1 \
+debug.systemui.latency_tracking=0 \
+persist.sample.eyetracking.log=0 \
+ro.com.google.locationfeatures=0 \
+ro.com.google.networklocation=0 \
+media.metrics.enabled=0 \
+sys.debug.watchdog=0 \
+logd.statistics=0 \
+media.metrics=0 \
+config.stats=0 \
+persist.sys.loglevel=0 \
+sys.log.app=0 \
+persist.traced.enable=0 \
+logd.statistics=0 \
+persist.sample.eyetracking.log=0 \
+debug.atrace.tags.enableflags=0 \
+debugtool.anrhistory=0 \
+ro.debuggable=1 \
+profiler.debugmonitor=false \
+profiler.launch=false \
+profiler.hung.dumpdobugreport=false \
+trustkernel.log.state=disable \
+debug.mdpcomp.logs=0 \
+debug.atrace.tags.enableflags=0 \
+pm.sleep_mode=1 \
+profiler.force_disable_ulog=true \
+profiler.force_disable_err_rpt=true \
+ro.logd.size.stats=0 \
+debug.atrace.tags.enableflags=0 \
+persist.service.pcsync.enable=0 \
+persist.service.lgospd.enable=0
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    camera.disable_zsl_mode=0 \
+    persist.camera.HAL3.enabled=1 \
+    persist.camera.ois.disable=0
+
+$(call inherit-product, vendor/bliss/config/telephony.mk)
+$(call inherit-product, vendor/gapps/products/gapps.mk)
+$(call inherit-product, vendor/certification/config.mk)
+
 
 # Inline Signing
 $(call inherit-product-if-exists, vendor/bliss-priv/keys/keys.mk)
