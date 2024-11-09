@@ -24,7 +24,12 @@ PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST +=  \
     system/lib64/libMegviiUnlock.so \
     system/lib64/libmegface.so \
     system/media/bootanimation.zip \
-    system/priv-app/ParanoidSense/ParanoidSense.apk
+    system/priv-app/ParanoidSense/ParanoidSense.apk \
+    system/app/GoogleExtShared/GoogleExtShared.apk \
+    system/app/GooglePrintRecommendationService/GooglePrintRecommendationService.apk \
+    system/priv-app/DocumentsUIGoogle/DocumentsUIGoogle.apk \
+    system/priv-app/TagGoogle/TagGoogle.apk
+
 
 
 PRODUCT_BRAND ?= Bliss
