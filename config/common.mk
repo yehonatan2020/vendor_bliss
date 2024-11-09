@@ -305,7 +305,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.camera.ois.disable=0
 
 $(call inherit-product, vendor/bliss/config/telephony.mk)
-$(call inherit-product, vendor/gapps/products/gapps.mk)
+$(call inherit-product, vendor/bliss/config/gms_full.mk)
 $(call inherit-product, vendor/certification/config.mk)
 
 
